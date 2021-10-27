@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block 'title' %} Home page {% endblock %}
+
+{% block 'body' %}
+<div class="container">
+    {% for b in Blog %}
+    <div class="row">
+        <h1>{{b.title}}</h1>
+        <span>{{b.category}} | {{b.publish_date}}</span>
+        <br>
+        <img src="{{MEDIA_URL}}{{b.image.url}}" style="width:200px;height:auto" >
+        <p>{{b.description | truncatewords:2}}</p>
+        <a href="{% url 'views_more' b.id %}" class="btn btn-primary">View more</a>
+        <hr>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
